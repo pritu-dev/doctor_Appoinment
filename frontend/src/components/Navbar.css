@@ -1,0 +1,12 @@
+.profile{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.dropdown {        /* spelling भी सही कर दो */
+    padding: 3px;
+    height: 89px;
+    width: 20px;
+    cursor: pointer;
+}

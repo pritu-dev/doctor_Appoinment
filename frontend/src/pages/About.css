@@ -1,0 +1,15 @@
+.hover-box{
+  color:#4B5563;
+  transition: all 0.35s ease;
+}
+
+.hover-box:hover{
+  background-color:#5F6FFF;
+  color:white;
+  transform: translateY(-6px);
+  box-shadow:0 12px 25px rgba(0,0,0,0.18);
+}
+
+.hover-box:hover h5{
+  color:white;
+}
