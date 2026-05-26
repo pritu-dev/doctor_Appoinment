@@ -5,15 +5,15 @@ import DoctorModel from "../models/DoctorModel.js";
 import UserModel from "../models/UserModel.js"
 import AppoinmentModel from "../models/AppoinmentModel.js"
 
-
 //API for adding doctor
 export const addDoctor = async (req, res) => {
   try {
 
     const { name, email, password, address, speciality, education, experience, about, fees } = req.body;
     const imageFile = req.file;
-    console.log(req.file);
+    console.log(imageFile);
 
+    const parsedAddress = JSON.parse(address);
     if (!imageFile) {
       return res.json({ success: false, message: "Image is required" });
     }
@@ -67,7 +67,7 @@ export const loginAdmin = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-
+    
       const token = jwt.sign({ email: email }, process.env.JWT_SECRET);
       res.json({ success: true, token });
     }
@@ -86,9 +86,7 @@ export const loginAdmin = async (req, res) => {
 export const allDoctors  = async (req,res) => {
   try{
     const doctors  = await DoctorModel.find({}).select("-password");
-    res.json({success:true, doctors})
-
-
+    res.json({success:true, doctors});
   }
   catch(error) {
      console.log(error);
@@ -100,7 +98,7 @@ export const allDoctors  = async (req,res) => {
 export const appointmentsAdmin = async (req,res) => {
   try{
     const appoinments = await AppoinmentModel.find({});
-    return res.json({success:true, message:" All Appoinments",appoinments})
+    return res.json({success:true, message:" All Appoinments", appoinments})
   }
   catch(error){
     res.json({success:false, message:error.message});

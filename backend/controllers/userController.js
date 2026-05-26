@@ -36,7 +36,7 @@ export const registerUser = async (req, res) => {
     const newUser = new UserModel(userData);
     const user = await newUser.save();
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "2m"});
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRETl);
     console.log("Signed_Token", token);
 
     res.json({ success: true, token });
@@ -108,7 +108,8 @@ export const updateProfile = async (req, res) => {
 
       const imageUrl = imageCloudinary.secure_url;
 
-      await UserModel.findByIdAndUpdate(userId, { image: imageUrl });
+     let data =  await UserModel.findByIdAndUpdate(userId, { image: imageUrl });
+      console.log(data)
     }
     res.json({ success: true, message: "Profile Updated" })
   }

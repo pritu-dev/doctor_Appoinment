@@ -11,7 +11,7 @@ const authUser = async (req, res, next) => {
         message: "Not Authorized! Login again",
       });
     }
-    console.log("token", token);
+    
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     console.log("decoded",decoded);

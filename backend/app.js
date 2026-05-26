@@ -10,7 +10,14 @@ const app = express();
 const PORT = 8080;
 console.log(process.env.CLOUDINARY_NAME);
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+  origin: [
+    "https://admindoctor-1.onrender.com",
+    "https://frontenddoctor-1.onrender.com"
+  ],
+  credentials: true
+}));
 
 app.use("/api/admin", adminRouter);
 app.use("/api/doctor", doctorRouter);
@@ -29,7 +36,6 @@ await main()
      .catch((err) => {
         console.log(err);
      })
-
 
 async function main() {
     await mongoose.connect(process.env.MONGO_URL)

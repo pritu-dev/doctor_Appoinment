@@ -2,7 +2,6 @@ import express from "express";
 import { doctorList, loginDoctor, appointmentsData, appointmentComplete, appointmentCancle, doctorDashBoard, doctorProfile, updateDoctorProfile} from "../controllers/doctorController.js";
 import authDoctor from "../middleware/authDoctor.js";
 
-
 const doctorRouter = express.Router();
 
 doctorRouter.get("/list",doctorList);
