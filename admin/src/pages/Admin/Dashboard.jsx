@@ -1,73 +1,10 @@
-// import React from 'react';
-// import axios from "axios";
-// import { AdminContext } from '../../context/AdminContext.jsx';
-// import { useContext } from 'react';
-// import { useEffect } from 'react';
-// import { assets} from "../../assets/assets.js";
-
-// const Dashboard = () => {
-//     const { aToken, getDashData, dashData, completeAppointment, cancleAppointment } = useContext(AdminContext);
-
-//     useEffect(() => {
-//         if (aToken) {
-//             getDashData();
-//         }
-//     }, [aToken]);
-
-//    return (
-//         <div className=''>
-//              <div className="d-flex gap-5">
-//                 <div>
-//               <img src={assets.doctor_icon} alt="" />
-//               <div>
-//                 <p>Doctors</p>
-//               <p>{dashData.doctors}</p>
-//               </div>
-//              </div>
-//               <div>
-//                  <img src={assets.appointments_icon} alt="" />
-//                  <p>{dashData.appointments}</p>
-//                  <p>Appointments</p>
-//               </div>
-//                <div>
-//                   <img src={assets.patients_icon} alt="" />
-//                   <p>{dashData.patients}</p>
-//                   <p>Patients</p>
-//                </div>
-//          </div>
-
-//          <div>
-//             <h4>Latest Appoitnmets</h4>
-//              {
-//                 dashData.latestAppointments && dashData.latestAppointments.map((item,idx) => {
-//                     return(
-//                         <div className="border" key={idx} >
-//                             <img src={assets.patients_icon} alt="" />
-//                             <h4>{item.docData.name}</h4>
-//                             <p>Booking on {item.slotDate}</p>
-//                              {!item.cancelled ? <div> <img onClick={() => cancleAppointment(item._id)} src={assets.cancel_icon} alt="" /></div> : <p>Cancelled</p>}
-//                        </div>
-
-
-//                     )
-//                 })
-//              }
-//          </div>
-//         </div>
-//     );
-// }
-
-// export default Dashboard;
-
-
 import React, { useContext, useEffect } from "react";
 import { AdminContext } from "../../context/AdminContext.jsx";
 import { assets } from "../../assets/assets.js";
 
 const Dashboard = () => {
 
-  const { aToken, getDashData, dashData } =
-    useContext(AdminContext);
+  const { aToken, getDashData, dashData } = useContext(AdminContext);
 
   useEffect(() => {
     if (aToken) {

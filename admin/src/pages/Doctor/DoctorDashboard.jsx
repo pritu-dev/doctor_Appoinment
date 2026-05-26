@@ -19,7 +19,7 @@ const DoctorDashboard = () => {
             <img src={assets.earning_icon} alt="" />
           </div>
           <div>
-            <p className='fw-bold fs-5 mb-0'> $ {dashData.earnings}</p>
+            <p className='fw-bold fs-5 mb-0'> ₹ {dashData.earnings}</p>
             <p>Earnings</p>
           </div>
         </div>

@@ -36,7 +36,7 @@ export const registerUser = async (req, res) => {
     const newUser = new UserModel(userData);
     const user = await newUser.save();
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRETl);
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     console.log("Signed_Token", token);
 
     res.json({ success: true, token });

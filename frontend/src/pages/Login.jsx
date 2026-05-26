@@ -12,9 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const { backendUrl, token, setToken } = useContext(AppContext);
-console.log(backendUrl);
-console.log("Backend URL:", backendUrl);
-console.log("Final URL:", backendUrl + "/api/user/login");
+
     const onSubmit = async (e) => {
         e.preventDefault();
         try {

@@ -183,7 +183,6 @@ const AddDoctor = () => {
             <div className="col-md-6">
               <label className="form-label">Fees</label>
               <input
-                type="number"
                 className="form-control"
                 value={fees}
                 onChange={(e) => setFees(e.target.value)}

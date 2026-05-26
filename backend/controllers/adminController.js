@@ -14,6 +14,7 @@ export const addDoctor = async (req, res) => {
     console.log(imageFile);
 
     const parsedAddress = JSON.parse(address);
+    // console.log(parsedAddress.address);
     if (!imageFile) {
       return res.json({ success: false, message: "Image is required" });
     }
