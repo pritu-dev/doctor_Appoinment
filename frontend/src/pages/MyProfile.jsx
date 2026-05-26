@@ -225,25 +225,28 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContextProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { assets} from "../assets/assets.js";
-import { useNavigate } from 'react-router-dom';
+import { assets } from "../assets/assets.js";
+import { useNavigate } from "react-router-dom";
+
+const { upload_area } = assets;
+console.log(upload_area);
 
 const MyProfile = () => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const { userData, backendUrl, token, loadUserProfileData } = useContext(AppContext);
 
   const [isEdit, setIsEdit] = useState(false);
-  const [image, setImage] = useState(false);
-
+  const [image, setImage] = useState(null); // new selected image
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     gender: "",
-    dob: ""
+    dob: "",
+    image: null, // backend image URL
   });
 
-  // userData आने पर formData fill करना
+  // Fill formData from userData
   useEffect(() => {
     if (userData) {
       setFormData({
@@ -251,213 +254,168 @@ const navigate = useNavigate();
         email: userData.email || "",
         phone: userData.phone || "",
         gender: userData.gender || "",
-        dob: userData.dob || ""
+        dob: userData.dob || "",
+        image: userData.image || "", // server URL, NOT local path
       });
     }
   }, [userData]);
 
-  // input change handle
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  // update profile
   const updateUserProfileData = async () => {
     try {
-
       const formDataObj = new FormData();
-
       formDataObj.append("name", formData.name);
       formDataObj.append("phone", formData.phone);
       formDataObj.append("gender", formData.gender);
       formDataObj.append("dob", formData.dob);
 
-      if (image) {
-        formDataObj.append("image", image);
-      }
+      // Only append image if new selected
+      if (image) formDataObj.append("image", image);
 
-      const { data } = await axios.post(backendUrl + "/api/user/update-profile",formDataObj,
-      { headers: { token } }
+      const { data } = await axios.post(
+        `${backendUrl}/api/user/update-profile`,
+        formDataObj,
+        { headers: { token } }
       );
 
       if (data.success) {
         toast.success(data.message);
-        navigate("/")
-        await loadUserProfileData();
+        await loadUserProfileData(); // refresh user data
         setIsEdit(false);
-        setImage(false);
+        setImage(null);
+        navigate("/");
       } else {
         toast.error(data.message);
       }
-
     } catch (error) {
       console.log(error);
       toast.error(error.message);
     }
   };
 
-  if (!userData) {
-    return <p className="text-center mt-5">Loading...</p>;
-  }
+  if (!userData) return <p className="text-center mt-5">Loading...</p>;
 
   return (
-  <div className="container  d-flex justify-content-center align-items-center" >
+    <div className="container d-flex justify-content-center align-items-center">
+      <div className="card shadow p-4" style={{ width: "500px" }}>
+        {/* PROFILE IMAGE */}
+        <div className="text-center">
+          <label htmlFor="image">
+            <img
+              src={image ? URL.createObjectURL(image) : formData.image || upload_area}
+              alt="profile"
+              width="100"
+              style={{ objectFit: "cover", cursor: "pointer" }}
+            />
+          </label>
+          {isEdit && (
+            <input
+              type="file"
+              id="image"
+              onChange={(e) => setImage(e.target.files[0])}
+              className="form-control mt-2"
+            />
+          )}
+          <h4 className="mt-3">{formData.name}</h4>
+        </div>
 
-    <div className="card shadow p-4" style={{ width: "500px" }}>
+        <hr />
 
-      {/* PROFILE IMAGE */}
+        {/* CONTACT INFORMATION */}
+        <h5 className="text-primary">Contact Information</h5>
+        <div>
+          <label className="fw-bold">Email</label>
+          {isEdit ? (
+            <input
+              type="text"
+              className="form-control"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          ) : (
+            <p>{formData.email}</p>
+          )}
+        </div>
 
-      <div className="text-center">
-        <label htmlFor="image">
-          <img
-            src={assets.upload_area}
-            alt="profile"
-            width="100"
-            style={{ objectFit: "cover", cursor: "pointer" }}
-          />
-        </label>
+        <div className="mt-2">
+          <label className="fw-bold">Phone</label>
+          {isEdit ? (
+            <input
+              type="text"
+              className="form-control"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+          ) : (
+            <p>{formData.phone}</p>
+          )}
+        </div>
 
-        {isEdit && (
-          <input
-            type="file"
-            id="image"
-            hidden
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-        )}
+        <hr />
 
-        <h4 className="mt-3">{formData.name}</h4>
-      </div>
-
-      <hr />
-
-      {/* CONTACT INFORMATION */}
-
-      <h5 className="text-primary">Contact Information</h5>
-
-      <div>
-
-        <label className="fw-bold">Email</label>
-
-        {isEdit ? (
-          <input
-            type="text"
-            className="form-control"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        ) : (
-          <p>{formData.email}</p>
-        )}
-
-      </div>
-
-      <div className="">
-
-        <label className="fw-bold">Phone</label>
-
-        {isEdit ? (
-          <input
-            type="text"
-            className="form-control"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-          />
-        ) : (
-          <p>{formData.phone}</p>
-        )}
-
-      </div>
-
-      <hr />
-
-      {/* BASIC INFORMATION */}
-
-      <h5 className="text-primary">Basic Information</h5>
-
-      <div className="">
-
-        <label className="fw-bold">Gender</label>
-
-        {isEdit ? (
-          <select
-            className="form-select"
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
-          >
-            <option value="">Select</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        ) : (
-          <p>{formData.gender}</p>
-        )}
-
-      </div>
-
-      <div className="">
-
-        <label className="fw-bold">Date of Birth</label>
-
-        {isEdit ? (
-          <input
-            type="date"
-            className="form-control"
-            name="dob"
-            value={formData.dob}
-            onChange={handleChange}
-          />
-        ) : (
-          <p>{formData.dob}</p>
-        )}
-
-      </div>
-
-      {/* BUTTONS */}
-
-      <div className="text-center mt-3">
-
-        {!isEdit ? (
-
-          <button
-            className="btn btn-primary px-4"
-            onClick={() => setIsEdit(true)}
-          >
-            Edit Profile
-          </button>
-
-        ) : (
-
-          <>
-            <button
-              className="btn btn-success px-4"
-              onClick={updateUserProfileData}
+        {/* BASIC INFORMATION */}
+        <h5 className="text-primary">Basic Information</h5>
+        <div>
+          <label className="fw-bold">Gender</label>
+          {isEdit ? (
+            <select
+              className="form-select"
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
             >
-              Save
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          ) : (
+            <p>{formData.gender}</p>
+          )}
+        </div>
+
+        <div className="mt-2">
+          <label className="fw-bold">Date of Birth</label>
+          {isEdit ? (
+            <input
+              type="date"
+              className="form-control"
+              name="dob"
+              value={formData.dob}
+              onChange={handleChange}
+            />
+          ) : (
+            <p>{formData.dob}</p>
+          )}
+        </div>
+
+        {/* BUTTONS */}
+        <div className="text-center mt-3">
+          {!isEdit ? (
+            <button className="btn btn-primary px-4" onClick={() => setIsEdit(true)}>
+              Edit Profile
             </button>
-
-            <button
-              className="btn btn-secondary ms-2"
-              onClick={() => setIsEdit(false)}
-            >
-              Cancel
-            </button>
-          </>
-
-        )}
-
+          ) : (
+            <>
+              <button className="btn btn-success px-4" onClick={updateUserProfileData}>
+                Save
+              </button>
+              <button className="btn btn-secondary ms-2" onClick={() => setIsEdit(false)}>
+                Cancel
+              </button>
+            </>
+          )}
+        </div>
       </div>
-
     </div>
-
-  </div>
-);
+  );
 };
 
 export default MyProfile;

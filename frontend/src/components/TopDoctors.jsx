@@ -9,8 +9,6 @@ const AllDoctors = () => {
     const navigate = useNavigate();
     const { doctors, getDoctorData } = useContext(AppContext);
 
-
-    console.log(doctors);
     useEffect(() => {
         getDoctorData();
     }, []);

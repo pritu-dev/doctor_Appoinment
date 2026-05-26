@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Doctor = () => {
   const { doctors } = useContext(AppContext);
+  console.log(doctors);
   const { speciality } = useParams();
   const navigate = useNavigate();
 

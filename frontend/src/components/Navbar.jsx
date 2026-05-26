@@ -53,7 +53,7 @@ const Navbar = () => {
 
             <li>
               <button className="btn rounded-pill border" 
-              onClick={() => window.location.href = `${admin_url}/login"`}>
+              onClick={() => window.location.href = `${admin_url}/login`}>
                 Admin Panel
               </button>
             </li>

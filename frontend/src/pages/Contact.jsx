@@ -3,33 +3,6 @@ import { assets } from '../assets/assets';
 
 const Contact = () => {
     return (
-        //         <div >
-        //             <h2>CONTACT US</h2>
-        //  <div className='d-flex'>
-        //             <div>
-        //                 <img src={assets.contact_image} alt="" />
-        //             </div>
-        //             <div>
-        //                 <h4>OUR OFFICE</h4>
-        //                 <p>00000 Willms Station
-        //                     Suite 000, Washington, USA</p>
-
-        //                 <p>Tel: (000) 000-0000
-        //                     Email: greatstackdev@gmail.com</p>
-
-        //                     <h4>CAREERS AT PRESCRIPTO</h4>
-        //                     <p>Learn more about our teams and job openings.</p>
-
-        //                     <button>Explore Jobs</button>
-        //             </div>
-        //         </div>
-        //         </div>
-
-        // <div className='container'> 
-        //      <div className="row">
-
-        //      </div>
-        // </div>
 
         <div className="container">
             <div className="row">

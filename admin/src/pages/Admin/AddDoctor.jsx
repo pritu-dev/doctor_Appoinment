@@ -35,7 +35,6 @@ const AddDoctor = () => {
       formData.append("speciality", speciality);
       formData.append("education", education);
 
-      // ✅ object → string
       formData.append(
         "address",
         JSON.stringify({
@@ -60,17 +59,18 @@ const AddDoctor = () => {
         toast.success(data.message);
 
         // reset
-        // setName("");
-        // setEmail("");
-        // setPassword("");
-        // setAbout("");
-        // setExperience("");
-        // setFees("");
-        // setSpeciality("");
-        // setEducation("");
-        // setAddress({ line1: "", line2: "" });
-        // setImage(null);
-      } else {
+        setName("");
+        setEmail("");
+        setPassword("");
+        setAbout("");
+        setExperience("");
+        setFees("");
+        setSpeciality("");
+        setEducation("");
+        setAddress({ line1: "", line2: "" });
+        setImage(null);
+      } 
+      else {
         toast.error(data.message);
       }
     } catch (err) {

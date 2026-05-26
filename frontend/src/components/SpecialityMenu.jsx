@@ -17,7 +17,7 @@ const navigate = useNavigate();
                 {
                     specialityData.map((item, index) => {
                         return (
-                            <div onClick={() => navigate(`/doctors/${item.speciality}`)}>
+                            <div key={index} onClick={() => navigate(`/doctors/${item.speciality}`)}>
                                 <img src={item.image} alt="" />
                                 <p className='text-center'>{item.speciality}</p>
                             </div>
