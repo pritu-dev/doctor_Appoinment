@@ -58,6 +58,21 @@ const Navbar = () => {
               </button>
             </li>
 
+            <li>
+  <button
+    className="btn rounded-pill px-3 py-2 text-white"
+    style={{
+      backgroundColor: "#5F6FFF",
+      whiteSpace: "nowrap",
+      border: "none",
+    }}
+    onClick={() => navigate("/chat")}
+  >
+    <i className="bi bi-robot me-1"></i>
+    Chat with AI
+  </button>
+</li>
+
           </ul>
         </div>
 

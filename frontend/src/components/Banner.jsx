@@ -15,9 +15,9 @@ const Banner = () => {
                     </button>
                 </div>
 
-                <div className="col-6">
-                    <img className="mb-5" src={assets.appointment_img} style={{ height: "400px" }} alt="" />
-                </div>
+            <div className="col-6">
+             <img className="mb-5" src={assets.appointment_img} style={{ height: "400px" }} alt="" />
+            </div>
             </div>
         </div>
     );

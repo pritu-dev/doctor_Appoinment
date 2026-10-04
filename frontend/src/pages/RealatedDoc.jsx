@@ -1,9 +1,10 @@
 
 import { AppContext } from '../context/AppContextProvider';
-import React, { useContext, useEffect, useState } from 'react';
-
+import { useNavigate} from 'react-router-dom';
+import React, { useContext, useEffect, useState} from 'react';
 
 const RealatedDoc = ({ filterDoc }) => {
+    const navigate = useNavigate();
     const { doctors } = useContext(AppContext);
     const [relatedDoc, SetRelatedDoc] = useState([]);
 
@@ -12,6 +13,7 @@ const RealatedDoc = ({ filterDoc }) => {
 
         const related = doctors.filter((item) => item.speciality === filterDoc.speciality && item._id !== filterDoc._id);
         SetRelatedDoc(related);
+        window.scrollTo(0, 0);
     }, [doctors, filterDoc]);
 
 
@@ -23,7 +25,9 @@ const RealatedDoc = ({ filterDoc }) => {
           </div>
         <div className="d-flex flex-wrap gap-3">
             {relatedDoc.map((doc, idx) => (
-                <div key={idx} className="card shadow-sm" style={{ width: '14rem' }}>
+                <div key={idx} className="card shadow-sm" style={{ width: '14rem' }}
+                 onClick={() => navigate(`/appoinment/${doc._id}`)}>
+
                     <img src={doc.image} className="card-img-top" alt={doc.name} />
                     <div className="card-body">
                          <p className="fw-medium mb-1" style={{color:"#22C55E"}}>Available</p>
@@ -35,6 +39,5 @@ const RealatedDoc = ({ filterDoc }) => {
         </div>
     </div>
 );   }
-        // </div>
 
 export default RealatedDoc;

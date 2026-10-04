@@ -16,7 +16,6 @@ export const AppContextProvider = (props) => {
         try {
 
             const { data } = await axios.get(backendUrl + "/api/doctor/list");
-            console.log(data);
             if (data.success) {
                 setDoctor(data.doctors)
             }
@@ -26,7 +25,6 @@ export const AppContextProvider = (props) => {
 
         }
         catch (error) {
-            console.log(error);
             toast.error(error.message)
         }
     }

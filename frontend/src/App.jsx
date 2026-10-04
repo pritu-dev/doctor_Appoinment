@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar.jsx";
 import SpecialityMenu from "./components/SpecialityMenu.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Api from "./components/Api.jsx";
 
 function App() {
 
@@ -27,10 +28,11 @@ function App() {
         <Route path="/contact" element={< Contact />}></Route>
         <Route path="/my-profile" element={< MyProfile />}></Route>
         <Route path="/my-appoinments" element={< MyAppoinments />}></Route>
-         <Route path="/speciality" element={< SpecialityMenu />}></Route>
+        <Route path="/speciality" element={< SpecialityMenu />}></Route>
         <Route path="/appoinment/:docId" element={< Appoinment />}></Route>
-
+        <Route path="/chat" element={<Api/>}></Route>
       </Routes>
+      
     </>
   )
 }

@@ -5,19 +5,17 @@ import { useNavigate } from 'react-router-dom';
 
 const Doctor = () => {
   const { doctors } = useContext(AppContext);
-  console.log(doctors);
   const { speciality } = useParams();
   const navigate = useNavigate();
 
   const [selectedSpeciality, setSelectedSpeciality] = useState("");
 
-  // Sync URL with state
   useEffect(() => {
     setSelectedSpeciality(speciality);
     window.scrollTo(0, 0);
   }, [speciality]);
 
-  // Filtered Doctors (Derived State)
+  // filtered Doctors 
   const filteredDoctors = selectedSpeciality
     ? doctors.filter((doc) => doc.speciality === selectedSpeciality)
     : doctors;
@@ -41,7 +39,7 @@ const Doctor = () => {
 
           {specialities.map((item, index) => (
             <p key={index}
-              className={`p-2 border rounded cursor-pointer ${selectedSpeciality === item ? "bg-primary text-white" : ""
+             className={`p-2 border rounded cursor-pointer ${selectedSpeciality === item ? "bg-primary text-white" : ""
                 }`}
               style={{ cursor: "pointer" }}
               onClick={() => navigate(`/doctors/${item}`)}
@@ -63,7 +61,6 @@ const Doctor = () => {
                     <img src={doc.image} className="card-img-top" style={{ height: "200px", objectFit: "cover" }} />
 
                     <div className="card-body">
-                      {/* <p className="fw-bold" style={{color:"#22C55E"}} >● Available</p> */}
                       <div className="d-flex align-items-center mb-2">
                         <span
                           className={`d-inline-block rounded-circle me-2 ${doc.available ? "bg-success" : "bg-danger"

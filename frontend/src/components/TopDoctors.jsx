@@ -13,6 +13,8 @@ const AllDoctors = () => {
         getDoctorData();
     }, []);
 
+    
+
     return (
         <div className='container'>
             <div className="row">
