@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "https://admindoctor-1.onrender.com",
-    "https://doctor-appoinment-ep82.onrender.com"
+    "https://frontend-3puf.onrender.com"
   ],
   credentials: true
 }));
