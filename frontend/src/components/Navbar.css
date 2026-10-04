@@ -4,9 +4,275 @@
     border-radius: 50%;
 }
 
-.dropdown {        /* spelling भी सही कर दो */
+.dropdown {        
     padding: 3px;
     height: 89px;
     width: 20px;
     cursor: pointer;
+}
+
+.navbar-wrapper {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.navbar-content {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+/* LOGO */
+
+.navbar-logo {
+  flex-shrink: 0;
+}
+
+.navbar-logo img {
+  width: 190px;
+  display: block;
+}
+
+/* NAV LINKS */
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  white-space: nowrap;
+}
+
+.navbar-links li {
+  white-space: nowrap;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.navbar-links a:hover {
+  color: #5f6fff;
+}
+
+.navbar-links a.active {
+  color: #5f6fff;
+  font-weight: 600;
+}
+
+/* RIGHT SIDE */
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ADMIN */
+
+.admin-btn {
+  background: white;
+  border: 1px solid #dddddd;
+  color: #333;
+  border-radius: 22px;
+
+  padding: 9px 15px;
+  font-size: 13px;
+  font-weight: 500;
+
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.admin-btn:hover {
+  border-color: #5f6fff;
+  color: #5f6fff;
+}
+
+/* AI BUTTON */
+
+.ai-chat-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  border: none;
+  border-radius: 24px;
+
+  padding: 9px 15px;
+
+  color: white;
+  background: linear-gradient(135deg, #5f6fff, #7c5cff);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+  cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(95, 111, 255, 0.25);
+
+  transition: all 0.25s ease;
+}
+
+.ai-chat-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(95, 111, 255, 0.35);
+}
+
+.ai-icon {
+  width: 23px;
+  height: 23px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ai-icon i {
+  font-size: 13px;
+}
+
+/* CREATE ACCOUNT */
+
+.create-account-btn {
+  border: none;
+  border-radius: 24px;
+
+  padding: 10px 17px;
+
+  background: #5f6fff;
+  color: white;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.create-account-btn:hover {
+  background: #4d5ce8;
+}
+
+/* PROFILE */
+
+.profile-wrapper {
+  position: relative;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  object-fit: cover;
+
+  cursor: pointer;
+}
+
+/* PROFILE MENU */
+
+.profile-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+
+  width: 190px;
+
+  background: white;
+  border-radius: 10px;
+
+  padding: 8px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+
+  z-index: 1000;
+}
+
+.profile-menu p {
+  margin: 0;
+  padding: 10px 12px;
+
+  border-radius: 7px;
+
+  font-size: 14px;
+  cursor: pointer;
+
+  color: #333;
+}
+
+.profile-menu p:hover {
+  background: #f5f6ff;
+  color: #5f6fff;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+  .navbar-content {
+    gap: 15px;
+  }
+
+  .navbar-links {
+    gap: 16px;
+  }
+
+  .navbar-logo img {
+    width: 160px;
+  }
+
+  .admin-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 850px) {
+  .navbar-links {
+    gap: 12px;
+  }
+
+  .navbar-links a {
+    font-size: 12px;
+  }
+
+  .ai-chat-btn span:last-child {
+    display: none;
+  }
+
+  .ai-chat-btn {
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+@media (max-width: 650px) {
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-content {
+    min-height: 70px;
+  }
 }

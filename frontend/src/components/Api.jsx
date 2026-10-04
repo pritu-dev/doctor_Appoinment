@@ -57,7 +57,7 @@ const Api = () => {
           <textarea
             className="form-control mb-3"
             rows="4"
-            placeholder="Example: What is React.js?"
+            placeholder="Example: How to be healthy?"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
