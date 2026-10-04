@@ -15,18 +15,10 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "https://admindoctor-1.onrender.com",
-    "https://frontenddoctor-1.onrender.com"
+    "https://doctor-appoinment-ep82.onrender.com"
   ],
   credentials: true
 }));
-
-// app.use(cors({
-//   origin: [
-//     "http://localhost:5173",
-//     "http://localhost:8080"
-//   ],
-//   credentials: true
-// }));
 
 app.use("/api/admin", adminRouter);
 app.use("/api/doctor", doctorRouter);
