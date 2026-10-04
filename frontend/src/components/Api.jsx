@@ -21,7 +21,7 @@ const Api = () => {
       setLoading(true);
       setReply("");
 
-      const { data } = await axios.post("https://backenddoctor-tha4.onrender.com/api/ai/chat", { message });
+      const { data } = await axios.post(`${backendUrl}` + "/api/ai/chat", { message });
       console.log(`backendUrl` + "/api/ai/chat");
 
       console.log(data);
