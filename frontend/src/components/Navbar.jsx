@@ -23,7 +23,6 @@ const Navbar = () => {
           <img src={assets.logo} alt="logo" />
         </div>
 
-<h1>hello</h1>
         {/* NAV LINKS */}
         <div className="col-6">
           <ul className="d-flex list-unstyled gap-4 align-items-center mb-0">
