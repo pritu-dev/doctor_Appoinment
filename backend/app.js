@@ -34,7 +34,7 @@ app.use("/api/user", userRouter);
 app.use("/api/ai", aiRouter);
 
 app.get("/", (req,res) => {
-    res.json({msg:"hello"})
+    res.json({msg:"hello god"})
 })
 
 connectCloudinary();
